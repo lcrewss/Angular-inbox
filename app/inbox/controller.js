@@ -5,7 +5,7 @@ angular
   .controller('inboxController', inboxController)
 
   function inboxController(){
-    console.log('inbox');
+
   }
 
 }());
