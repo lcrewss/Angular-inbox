@@ -3,6 +3,6 @@
 angular.module('angular-inbox', )
 .component('ngform', {
   controller:'formController',
-  templateUrl:'form/temp.html'
+  templateUrl:'app/inbox/form/temp.html'
 })
 }());

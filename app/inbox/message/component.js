@@ -3,6 +3,6 @@
   angular.module('angular-inbox', )
   .component('ngmessage', {
     controller:'messageController',
-    templateUrl:'message/temp.html'
+    templateUrl:'app/inbox/message/temp.html'
 })
 }());
