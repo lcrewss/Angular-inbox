@@ -5,7 +5,7 @@
     controller:'messageController',
     templateUrl:'app/inbox/messageList/message/temp.html',
     bindings: {
-    messagebinding: '<'
+      messagebinding: '<'
     }
 
 })

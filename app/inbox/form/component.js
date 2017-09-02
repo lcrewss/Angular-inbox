@@ -3,6 +3,9 @@
 angular.module('angular-inbox', )
 .component('ngform', {
   controller:'formController',
-  templateUrl:'app/inbox/form/temp.html'
+  templateUrl:'app/inbox/form/temp.html',
+  bindings: {
+    messagesbinding: '<'
+  }
 })
 }());

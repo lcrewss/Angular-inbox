@@ -8,6 +8,7 @@
   const vm = this;
 
   vm.selectCheckbox = function(msg){
+
   }
 
   vm.toggleStar = function(msg) {

@@ -3,6 +3,9 @@
   angular.module('angular-inbox', )
   .component('ngmessagelist', {
     controller:'messageListController',
-    templateUrl:'app/inbox/messageList/temp.html'
+    templateUrl:'app/inbox/messageList/temp.html',
+    bindings: {
+      messagesbinding: '<'
+    }
 })
 }());

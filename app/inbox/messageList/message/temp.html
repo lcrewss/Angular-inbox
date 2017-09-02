@@ -1,13 +1,18 @@
-  <div class="row message read" ng-class="{selected: selected}">
+  <div class="row message read"
+  ng-class="{selected: selected}">
   <div class="col-xs-1">
     <div class="row">
-      <div class="col-xs-2" ng-click="$ctrl.selectCheckbox(msg)">
-        <input type="checkbox" ng-model="selected"/>
+      <div class="col-xs-2"
+      ng-click="$ctrl.selectCheckbox(msg)">
+        <input type="checkbox"
+        ng-model="selected">
       </div>
       <div class="col-xs-2">
         <i
           ng-click="$ctrl.toggleStar($ctrl.messagebinding)"
-          ng-class="{'fa fa-star': $ctrl.messagebinding.starred, 'fa fa-star-o': !$ctrl.messagebinding.starred}"
+          ng-class="{
+            'fa fa-star': $ctrl.messagebinding.starred,
+            'fa fa-star-o': !$ctrl.messagebinding.starred}"
            ></i>
       </div>
     </div>
