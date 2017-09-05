@@ -54,7 +54,7 @@ function toolbarController($http){
           read: true
         }
         const baseURL = "https://angular-inbox.herokuapp.com/api/"
-        $http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
+        $http.patch(baseURL + 'messages', JSON.stringify(body)).then(function(response){
       })
     }
 
@@ -73,7 +73,7 @@ function toolbarController($http){
           read: false
         }
         const baseURL = "https://angular-inbox.herokuapp.com/api/"
-        $http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
+        $http.patch(baseURL + 'messages', JSON.stringify(body)).then(function(response){
       })
       }
 
@@ -91,7 +91,7 @@ function toolbarController($http){
           command: "delete"
         }
         const baseURL = "https://angular-inbox.herokuapp.com/api/"
-        $http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
+        $http.patch(baseURL + 'messages', JSON.stringify(body)).then(function(response){
         })
         }
 
@@ -99,16 +99,12 @@ function toolbarController($http){
         if (messages !==undefined) {
           var count = 0;
           for (var i = 0; i < messages.length; i++) {
-            if (messages.unread = false){
-              return '0 dddd'
-          } else {
-            (messages.unread = true)
+            if (messages[i].read == false){
               count++
-            } return count
-          }
+            }
+          }return count
         }
-
-      }
+        }
 
       vm.addLabel=function(messages,label){
         var messageId = []
@@ -116,29 +112,40 @@ function toolbarController($http){
         var labelExist=messages[i].labels.includes(label)
         if (messages[i].selected && !labelExist ) {
           messages[i].labels.push(label)
-          messageId.push(message[i].id)
+          messageId.push(messages[i].id)
           }
         }
         var body = {
           messageIds: [ messageId ],
           command: "addLabel",
-            label: "dev"
+            label: label
         }
         const baseURL = "https://angular-inbox.herokuapp.com/api/"
-        $http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
+        $http.patch(baseURL + 'messages', JSON.stringify(body)).then(function(response){
         })
       }
 
       vm.removeLabel=function(messages,label){
+        var messageId = []
         for (var i = 0; i < messages.length; i++) {
         if (messages[i].selected) {
           var index=messages[i].labels.indexOf(label)
           console.log(index);
           if (index > -1) {
           messages[i].labels.splice(index, 1);
+          messageId.push(messages[i].id)
         }
       }
     }
+    var body = {
+      messageIds: [ messageId ],
+      command: "removeLabel",
+        label: label
+    }
+    const baseURL = "https://angular-inbox.herokuapp.com/api/"
+    $http.patch(baseURL + 'messages', JSON.stringify(body)).then(function(response){
+    })
+
   }
 
       vm.checkAllBox=function(messages){
