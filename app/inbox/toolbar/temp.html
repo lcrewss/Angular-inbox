@@ -1,36 +1,45 @@
 <div class="row toolbar">
   <div class="col-md-12">
     <p class="pull-right">
-      <span class="badge badge">2</span>
+      <span class="badge badge">{{$ctrl.countUnreadMessage($ctrl.messagesbinding)}}</span>
       unread messages
     </p>
 
-    <a class="btn btn-danger">
+    <a class="btn btn-danger" ng-click="$ctrl.checkAllBox($ctrl.messagesbining)">
       <i class="fa fa-plus"></i>
     </a>
 
     <button class="btn btn-default">
       <i class="fa  "
 
-      
       ng-class="{
-        'fa-check-square-o':$ctrl.selectAll($ctrl.messagesbinding)
+        'fa-check-square-o':$ctrl.allSelected($ctrl.messagesbinding),
+        'fa-minus-square-o':$ctrl.someSelected($ctrl.messagesbinding),
+        'fa-square-o':$ctrl.allNotSelected($ctrl.messagesbinding)
       }"
       ></i>
     </button>
 
-    <button class="btn btn-default" >Mark As Read</button>
+    <button class="btn btn-default"
+      ng-click="$ctrl.markRead($ctrl.messagesbinding)"
+      >Mark As Read</button>
 
-    <button class="btn btn-default">Mark As Unread</button>
+    <button class="btn btn-default"
+    ng-click="$ctrl.markUnRead($ctrl.messagesbinding)"
+    >Mark As Unread</button>
 
-    <select class="form-control label-select">
+    <select class="form-control label-select"
+      ng-model="selectedLabel"
+      ng-change="$ctrl.addLabel($ctrl.messagesbinding,selectedLabel)">
       <option>Apply label</option>
       <option value="dev">dev</option>
       <option value="personal">personal</option>
       <option value="gschool">gschool</option>
     </select>
 
-    <select class="form-control label-select">
+    <select class="form-control label-select"
+      ng-model="removeSelected"
+      ng-change="$ctrl.removeLabel($ctrl.messagesbinding, removeSelected)">
       <option>Remove label</option>
       <option value="dev">dev</option>
       <option value="personal">personal</option>
@@ -38,7 +47,8 @@
     </select>
 
     <button class="btn btn-default">
-      <i class="fa fa-trash-o"></i>
+      <i class="fa fa-trash-o"
+      ng-click="$ctrl.deleteMessage($ctrl.messagesbinding)"></i>
     </button>
   </div>
 </div>

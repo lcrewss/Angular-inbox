@@ -4,12 +4,21 @@ angular
   .module('angular-inbox', )
   .controller('inboxController', inboxController)
 
-  function inboxController(){
+  function inboxController($http){
 
     const vm = this
       vm.$onInit = function(){
-        var data = angular.fromJson(jsonData)
-        vm.messages = data
+        const baseURL = "http://localhost:8082/api"
+        $http.get(baseURL + '/messages')
+        .then(function(messages){
+          vm.messages = messages.data._embedded.messages
+          console.log(messages.data._embedded.messages);
+        })
+
+
+
+        // var data = angular.fromJson(jsonData)
+        // vm.messages = data
   }
 }
 }());

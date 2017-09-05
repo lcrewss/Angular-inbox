@@ -1,27 +1,34 @@
-  <div class="row message read"
-  ng-class="{selected: selected}">
-  <div class="col-xs-1">
-    <div class="row">
-      <div class="col-xs-2"
-      ng-click="$ctrl.selectCheckbox(msg)">
-        <input type="checkbox"
-        ng-model="selected">
-      </div>
-      <div class="col-xs-2">
-        <i
-          ng-click="$ctrl.toggleStar($ctrl.messagebinding)"
-          ng-class="{
-            'fa fa-star': $ctrl.messagebinding.starred,
-            'fa fa-star-o': !$ctrl.messagebinding.starred}"
-           ></i>
+
+  <div class="row message"
+    ng-class="{
+      read:$ctrl.messagebinding.read,
+      unread: !$ctrl.messagebining.read,
+      selected: $ctrl.messagebinding.selected
+    }">
+    <div class="col-xs-1">
+      <div class="row">
+        <div class="col-xs-2"
+        ng-checked="$ctrl.messagebinding.selected"
+        ng-click="$ctrl.selectCheckbox(selected,$ctrl.messagebinding)">
+          <input type="checkbox"
+          ng-model="selected">
+        </div>
+        <div class="col-xs-2">
+          <i
+            ng-click="$ctrl.toggleStar($ctrl.messagebinding)"
+            ng-class="{
+              'fa fa-star': $ctrl.messagebinding.starred,
+              'fa fa-star-o': !$ctrl.messagebinding.starred}"
+             ></i>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-xs-11">
-    <span class="label label-warning">dev</span>
-    <span class="label label-warning">gschool</span>
-    <a href="#">
-      {{$ctrl.messagebinding.subject}}
-    </a>
-  </div>
-  </div>
+    <div class="col-xs-11">
+      <span class="label label-warning"
+      ng-repeat="label in $ctrl.messagebinding.labels">{{label}}</span>
+
+      <a href="#">
+        {{$ctrl.messagebinding.subject}}
+      </a>
+    </div>
+    </div>
