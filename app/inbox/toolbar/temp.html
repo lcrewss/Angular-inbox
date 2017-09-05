@@ -5,13 +5,13 @@
       unread messages
     </p>
 
-    <a class="btn btn-danger" ng-click="$ctrl.checkAllBox($ctrl.messagesbining)">
+    <a class="btn btn-danger">
       <i class="fa fa-plus"></i>
     </a>
 
     <button class="btn btn-default">
       <i class="fa  "
-
+      ng-click="$ctrl.checkAllBox($ctrl.messagesbining)"
       ng-class="{
         'fa-check-square-o':$ctrl.allSelected($ctrl.messagesbinding),
         'fa-minus-square-o':$ctrl.someSelected($ctrl.messagesbinding),

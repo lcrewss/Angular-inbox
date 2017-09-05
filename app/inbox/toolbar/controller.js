@@ -3,7 +3,8 @@
 angular
 .module('angular-inbox', )
 .controller('toolbarController', toolbarController)
-function toolbarController(){
+function toolbarController($http){
+
 
   var vm = this
 
@@ -40,28 +41,59 @@ function toolbarController(){
   }
 
       vm.markRead = function(messages){
+        var messageId = []
         for (var i = 0; i < messages.length; i++) {
           if (messages[i].selected) {
             messages[i].read=true
+            messageId.push(messages[i].id)
           }
         }
-      }
+        var body = {
+          messageIds: [ messageId ],
+          command: "read",
+          read: true
+        }
+        const baseURL = "https://angular-inbox.herokuapp.com/api/"
+        $http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
+      })
+    }
+
+
       vm.markUnRead = function(messages){
+        var messageId = []
         for (var i = 0; i < messages.length; i++) {
           if (messages[i].selected) {
             messages[i].read=false
+            messageId.push(messages[i].id)
           }
         }
+        var body = {
+          messageIds: [ messageId ],
+          command: "read",
+          read: false
+        }
+        const baseURL = "https://angular-inbox.herokuapp.com/api/"
+        $http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
+      })
       }
 
       vm.deleteMessage = function(messages){
+        var messagesId = []
         for (var i = 0; i < messages.length; i++) {
           if (messages[i].selected) {
             messages.splice(i,1)
             i--
+            messagesId.push(messages[i].id)
           }
         }
-      }
+        var body =  {
+          messageIds: [ messagesId ],
+          command: "delete"
+        }
+        const baseURL = "https://angular-inbox.herokuapp.com/api/"
+        $http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
+        })
+        }
 
       vm.countUnreadMessage = function(messages){
         if (messages !==undefined) {
@@ -78,16 +110,23 @@ function toolbarController(){
 
       }
 
-
-
       vm.addLabel=function(messages,label){
+        var messageId = []
       for (var i = 0; i < messages.length; i++) {
         var labelExist=messages[i].labels.includes(label)
         if (messages[i].selected && !labelExist ) {
           messages[i].labels.push(label)
-          console.log(labelExist);
+          messageId.push(message[i].id)
           }
         }
+        var body = {
+          messageIds: [ messageId ],
+          command: "addLabel",
+            label: "dev"
+        }
+        const baseURL = "https://angular-inbox.herokuapp.com/api/"
+        $http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
+        })
       }
 
       vm.removeLabel=function(messages,label){

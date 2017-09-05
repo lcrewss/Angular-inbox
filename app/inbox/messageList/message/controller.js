@@ -17,18 +17,13 @@ vm.toggleStar = function(msg) {
   command: "star",
   star: !msg.starred
 }
+
 const baseURL = "https://angular-inbox.herokuapp.com/api/"
 // const baseURL = "http://localhost:8082/api"
 $http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
   msg.starred = !msg.starred
 })
 
-
-//   {
-//   "messageIds": [ 1, 3 ],
-//   "command": "star",
-//   "star": false
-// }
 
 
 }
