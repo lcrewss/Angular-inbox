@@ -8,7 +8,8 @@ angular
 
     const vm = this
       vm.$onInit = function(){
-        const baseURL = "http://localhost:8082/api"
+        const baseURL = "https://angular-inbox.herokuapp.com/api/"
+        // const baseURL = "http://localhost:8082/api"
         $http.get(baseURL + '/messages')
         .then(function(messages){
           vm.messages = messages.data._embedded.messages

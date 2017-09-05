@@ -3,7 +3,7 @@
 
 angular
    .module('angular-inbox', )
-   .controller('messageController', function(){
+   .controller('messageController', function($http){
 
 const vm = this;
 
@@ -12,7 +12,24 @@ vm.selectCheckbox = function(selected,msg){
  }
 
 vm.toggleStar = function(msg) {
-   msg.starred = !msg.starred
+  var body = {
+  messageIds: [ msg.id ],
+  command: "star",
+  star: !msg.starred
+}
+const baseURL = "https://angular-inbox.herokuapp.com/api/"
+// const baseURL = "http://localhost:8082/api"
+$http.patch(baseURL + '/messages', JSON.stringify(body)).then(function(response){
+  msg.starred = !msg.starred
+})
+
+
+//   {
+//   "messageIds": [ 1, 3 ],
+//   "command": "star",
+//   "star": false
+// }
+
 
 }
 })

@@ -9,24 +9,33 @@ function toolbarController(){
 
   vm.$onInit=function(){
       vm.allSelected=function (messages){
-        return status=messages.every(function(data){
-          return data.selected==true
-        })
+        if (messages !==undefined) {
+          return status=messages.every(function(data){
+            return data.selected==true
+          })
+        }
+
       }
 
       vm.someSelected = function(messages){
-        const someMsgs = messages.some(function(data){
-          return data.selected == true
-        })
-        const allMsgs=messages.every(function(data){
-          return data.selected==true
-        })
-        return  someMsgs && !allMsgs
+        if (messages !==undefined) {
+          const someMsgs = messages.some(function(data){
+            return data.selected == true
+          })
+          const allMsgs=messages.every(function(data){
+            return data.selected==true
+          })
+          return  someMsgs && !allMsgs
+        }
+
       }
       vm.allNotSelected=function (messages){
-        return status=messages.every(function(data){
-          return data.selected!==true
-        })
+        if (messages !==undefined) {
+          return status=messages.every(function(data){
+            return data.selected!==true
+          })
+        }
+
       }
   }
 
@@ -34,17 +43,13 @@ function toolbarController(){
         for (var i = 0; i < messages.length; i++) {
           if (messages[i].selected) {
             messages[i].read=true
-          } else {
-            messages[i].read=false
           }
         }
       }
       vm.markUnRead = function(messages){
         for (var i = 0; i < messages.length; i++) {
           if (messages[i].selected) {
-            messages[i].unread=true
-          } else {
-            messages[i].unread=false
+            messages[i].read=false
           }
         }
       }
@@ -59,13 +64,21 @@ function toolbarController(){
       }
 
       vm.countUnreadMessage = function(messages){
-        var count = 0;
-        for (var i = 0; i < messages.length; i++) {
-          if(messages.unread = true){
-            count++
-          } return count
+        if (messages !==undefined) {
+          var count = 0;
+          for (var i = 0; i < messages.length; i++) {
+            if (messages.unread = false){
+              return '0 dddd'
+          } else {
+            (messages.unread = true)
+              count++
+            } return count
+          }
         }
+
       }
+
+
 
       vm.addLabel=function(messages,label){
       for (var i = 0; i < messages.length; i++) {
