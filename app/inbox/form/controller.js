@@ -5,9 +5,14 @@ angular
 .controller('formController', function(){
 
   var vm = this
+  vm.addForm = function(messages,submessage,bodymessage){
 
-  vm.testing=function(data){
-    console.log('datatesting');
-  };
+    var body =
+    {
+      subject: submessage,
+      body: bodymessage
+    }
+  }
+
 })
 }());

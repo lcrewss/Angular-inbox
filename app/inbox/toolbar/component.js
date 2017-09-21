@@ -5,7 +5,8 @@
     controller:'toolbarController',
     templateUrl:'app/inbox/toolbar/temp.html',
     bindings: {
-      messagesbinding: '<'
+      messagesbinding: '<',
+      formbinding: '<'
     }
   })
 }());

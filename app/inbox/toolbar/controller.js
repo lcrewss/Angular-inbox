@@ -118,7 +118,7 @@ function toolbarController($http){
         var body = {
           messageIds: [ messageId ],
           command: "addLabel",
-            label: label
+          label: label
         }
         const baseURL = "https://angular-inbox.herokuapp.com/api/"
         $http.patch(baseURL + 'messages', JSON.stringify(body)).then(function(response){
@@ -130,7 +130,6 @@ function toolbarController($http){
         for (var i = 0; i < messages.length; i++) {
         if (messages[i].selected) {
           var index=messages[i].labels.indexOf(label)
-          console.log(index);
           if (index > -1) {
           messages[i].labels.splice(index, 1);
           messageId.push(messages[i].id)
@@ -145,7 +144,6 @@ function toolbarController($http){
     const baseURL = "https://angular-inbox.herokuapp.com/api/"
     $http.patch(baseURL + 'messages', JSON.stringify(body)).then(function(response){
     })
-
   }
 
       vm.checkAllBox=function(messages){
@@ -153,10 +151,25 @@ function toolbarController($http){
           for (var i = 0; i < messages.length; i++) {
             messages[i].selected=false
           }
-        } else {
-          (vm.someSelected(messages))
-        }
+        } else if
+          (vm.someSelected(messages)){
+            for (var i = 0; i < messages.length; i++) {
+              messages[i].selected=true
+            }
+          }
+          else if
+            (vm.allNotSelected(messages)){
+              for (var i = 0; i < messages.length; i++) {
+                messages[i].selected=true
+              }
+            }
+          }
+
+      vm.collapseForm = function (form) {
+        form.flag = !form.flag
       }
+
+
 
 
 

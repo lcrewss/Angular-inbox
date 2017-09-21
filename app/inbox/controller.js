@@ -16,7 +16,9 @@ angular
           console.log(messages.data._embedded.messages);
         })
 
-
+       vm.formview={
+         flag:true
+       }
 
         // var data = angular.fromJson(jsonData)
         // vm.messages = data
